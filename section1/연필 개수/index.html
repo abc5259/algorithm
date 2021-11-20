@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer;
+        answer = Math.floor(n / 12);
+        if (n % 12 >= 1) answer++;
+
+        return answer;
+      }
+      console.log(solution(11));
+    </script>
+  </body>
+</html>

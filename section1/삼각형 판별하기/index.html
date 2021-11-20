@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(a, b, c) {
+        let answer;
+        let number;
+        let plus;
+        if (a < b) {
+          number = b;
+          plus = a + c;
+        } else {
+          number = a;
+          plus = b + c;
+        }
+        if (c > number) {
+          number = c;
+          plus = a + b;
+        }
+        if (number < plus) {
+          answer = "YES";
+        } else {
+          answer = "No";
+        }
+        return answer;
+      }
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
+</html>
