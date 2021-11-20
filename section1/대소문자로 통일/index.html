@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+        const str = s.split("");
+        for (let i = 0; i < str.length; i++) {
+          console.log(str[i] !== str[i].toUpperCase());
+          if (str[i] !== str[i].toUpperCase()) str[i] = str[i].toUpperCase();
+          else str[i] = str[i].toLowerCase();
+        }
+        return (answer = str.join(""));
+      }
+
+      console.log(solution("StuDY"));
+    </script>
+  </body>
+</html>
