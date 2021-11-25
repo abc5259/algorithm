@@ -19,7 +19,7 @@ function solution(arr) {
   }
   return answer;
 }
-// i-1 j, i+1 j, i j-1, i j+1
+
 const arr = [
   [5, 3, 7, 2, 3],
   [3, 7, 1, 6, 1],
