@@ -4,10 +4,10 @@ function solution(num) {
   for (let i = 0; i < num.length; i++) {
     cnt = 0;
     arr[i] = String(arr[i]).split("").reverse().join("") * 1;
-    for (let j = 1; j <= arr[i]; j++) {
-      if (arr[i] % j === 0) cnt++;
+    for (let j = 2; j <= parseInt(Math.sqrt(arr[i])); j++) {
+      if (arr[i] === 1 || arr[i] % j === 0) cnt++;
     }
-    if (cnt === 2) answer += arr[i] + " ";
+    if (arr[i] !== 1 && cnt === 0) answer += arr[i] + " ";
   }
   return answer;
 }
