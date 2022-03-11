@@ -9,7 +9,7 @@ public class A_B {
     for(int i = 0; i < t; i++) {
       int a = sc.nextInt();
       int b = sc.nextInt();
-      System.out.println(a+b);
+      System.out.printf("Case #%d: %d + %d = %d\n",i+1,a,b,a+b);
     }
   }
 }
