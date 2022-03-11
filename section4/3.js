@@ -1,6 +1,6 @@
 function solution(test) {
   let answer = [];
-  //3,4x 3,1 3,2 4,1 4,2 1,2x | 4,3 4,2 4,1 3,2 3,1 2,1 | 3,1 3,4 3,2 1,4 1,2 4,2
+
   for (let i = 0; i < test.length; i++) {
     for (let j = 0; j < test[i].length - 1; j++) {
       for (let k = j + 1; k < test[i].length; k++) {
