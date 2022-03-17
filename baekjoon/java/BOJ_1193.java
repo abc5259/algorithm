@@ -9,7 +9,7 @@ public class BOJ_1193 {
     int cross_count = 1;
     int prev_count_sum = 0;
     while(true) {
-      if(X <= prev_count_sum) {
+      if(X <= prev_count_sum + cross_count) {
         if(cross_count % 2 == 1) {
           System.out.print((cross_count - (X - prev_count_sum - 1)) + "/" + (X - prev_count_sum));
           break;
