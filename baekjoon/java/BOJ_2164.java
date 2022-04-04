@@ -3,32 +3,33 @@ package baekjoon.java;
 import java.util.Scanner;
 
 public class BOJ_2164 {
+  public static int N;
   public static int rear = -1;
-  public static int front = -1;
+  public static int front = 0;
   public static int size = 0;
   public static int[] queue;
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    StringBuffer sb = new StringBuffer();
-    int N = sc.nextInt();
+    N = sc.nextInt();
     queue = new int[N];
-    for(int i=N; i>=1; i--) {
+    for(int i=1; i<=N; i++) {
       push(i); 
     }
     while(size != 1) {
       pop();
+      push(pop());
     }
+    System.out.println(pop());
   }
   public static void push(int item) {
     rear++;
     size++;
-    queue[rear] = item;
+    queue[rear % N] = item;
   }
   public static int pop() {
     if(!empty()) {
-      front++;
       size--;
-      return queue[front];
+      return queue[front++ % N];
     }else {
       return -1;
     }
