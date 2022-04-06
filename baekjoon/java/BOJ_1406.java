@@ -5,9 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class BOJ_1406 {
   public static void main(String[] args) throws IOException {
@@ -15,36 +13,37 @@ public class BOJ_1406 {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     String str = br.readLine();
     int N = Integer.parseInt(br.readLine());
-    LinkedList<Character> arr = new LinkedList<Character>();
+    Stack<Character> leftStack = new Stack<>();
+    Stack<Character> rightStack = new Stack<>();
 
 		for(int i = 0; i < str.length(); i++) {
-			arr.add(str.charAt(i));
+			leftStack.push(str.charAt(i));
 		}
 
-    int cursur = arr.size();
     for(int i = 0; i < N; i++) {
       String code = br.readLine();
       if(code.equals("L")) {
-        if(cursur != 0) {
-          cursur--;
+        if(!leftStack.isEmpty()){
+          rightStack.push(leftStack.pop());
         }
       }else if(code.equals("D")) {
-        if(cursur != arr.size()) {
-          cursur++;
+        if(!rightStack.isEmpty()){
+          leftStack.push(rightStack.pop());
         }
       }else if(code.equals("B")) {
-        if(cursur != 0) {
-          arr.remove(cursur - 1);
-          cursur--;
+        if(!leftStack.isEmpty()){
+          leftStack.pop();
         }
       }else if(code.charAt(0) == 'P') {
         char t = code.charAt(2);
-        arr.add(cursur, t);
-        cursur++;
+        leftStack.push(t);
       }
     }
-    for(Character item:arr) {
-      bw.write(item);
+    while(!leftStack.isEmpty()){
+      rightStack.push(leftStack.pop());
+    }
+    while(!rightStack.isEmpty()){
+      bw.write(rightStack.pop());
     }
     bw.flush();
 		bw.close();
