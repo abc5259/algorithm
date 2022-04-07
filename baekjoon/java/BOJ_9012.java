@@ -1,67 +1,36 @@
 package baekjoon.java;
 
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BOJ_9012 {
-  public static int top = -1;
-  public static ArrayList<String> items;
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     int N = sc.nextInt();
     for(int i=0; i<N; i++) {
-      top = -1;
-      String[] arr = sc.next().split("");
-      items = new ArrayList<>();
-      String result = "YES";
-      for(int j=0; j<arr.length; j++) {
-        if(arr[j].equals("(")) {
-          push("(");
-        }else {
-          if(is_empty()) {
-            result = "NO";
-            break;
-          }
-          pop();
-        }
-      }
-      if(result.equals("NO")) {
-        sb.append("NO").append("\n");
-      }else {
-        if(items.size() > 0) {
-          sb.append("NO").append("\n");
-        }else {
-          sb.append("YES").append("\n");
-        }
-      }
+      sb.append(result(sc.next())).append("\n");
     }
     System.out.println(sb);
   }
-  public static boolean is_full() {
-    if(top >= items.size() - 1) {
-      return false;
-    }else {
-      return true;
+  public static String result(String str) {
+    Stack<Character> stack = new Stack<>();
+    for(int i=0; i<str.length(); i++) {
+      if(str.charAt(i) == '(') {
+        stack.push(str.charAt(i));
+      }
+      else if (stack.empty()) {
+        return "NO";
+      }
+      else {
+        stack.pop();
+      }
     }
-  }
-  public static boolean is_empty() {
-    if(top == -1) {
-      return true;
-    }else {
-      return false;
-    }
-  }
-  public static void pop() {
-    if(!is_empty()) {
-      items.remove(top);
-      top--;
-    }
-  }
-  public static void push(String item) {
-    if(!is_full()) {
-      top++;
-      items.add(item);
-    }
+    if (stack.empty()) {
+			return "YES";
+		} 
+		else {
+			return "NO";
+		}
   }
 }
