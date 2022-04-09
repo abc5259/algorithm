@@ -1,6 +1,5 @@
 package baekjoon.java;
 
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -10,38 +9,34 @@ public class BOJ_17299 {
     StringBuffer sb = new StringBuffer();
     int N = sc.nextInt();
     Stack<Integer> stack = new Stack<>();
-    Stack<Integer> stack2 = new Stack<>();
-    Stack<Integer> stack3 = new Stack<>();
-    HashMap<Integer, Integer> hashMap = new HashMap<>();
+    Stack<Integer> numStack = new Stack<>();
+    Stack<Integer> resultStack = new Stack<>();
+    int[] list = new int[1000001];
     for(int i=0; i<N; i++) {
       int num = sc.nextInt();
       stack.push(num);
-      if(hashMap.containsKey(num)) {
-        int value = hashMap.get(num);
-        hashMap.put(num, ++value);
-      }else {
-        hashMap.put(num, 1);
-      }
+      list[stack.peek()]++;
     }
     while(!stack.empty()) {
-      //ㅔpop값과 pop아 key인값
-      int pop = stack.pop();
-      int value = hashMap.get(pop);
-      while(!stack3.empty()) {
-        int stack3_pop = stack3.pop();
-        if(value < hashMap.get(stack3_pop)) {
-          stack3.push(value);
-          stack2.push(pop);
-          System.out.println(stack3);
+      int key = stack.pop();
+      int value = list[key];
+      while(true) {
+        if(numStack.empty()) {
+          numStack.push(key);
+          resultStack.push(-1);
           break;
         }
-      }
-      System.out.println(stack3);
-      if(stack3.empty()) {
-        stack2.push(pop);
-        stack3.push(value);
+        if(list[numStack.peek()] > value) {
+          resultStack.push(numStack.peek());
+          numStack.push(key);
+          break;
+        }
+        numStack.pop();
       }
     }
-    System.out.println(stack2);
+    while(!resultStack.isEmpty()) {
+      sb.append(resultStack.pop()).append(" ");
+    }
+    System.out.println(sb);
   }
 }
